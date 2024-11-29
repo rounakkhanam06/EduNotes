@@ -1,0 +1,177 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Notes for <%= className %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form div {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .document {
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        a:hover {
+            color: #23527c;
+        }
+    </style>
+</head>
+
+
+<body class="class-content">
+    <div class="row gy-2 gx-3 align-items-center">
+    <div class="container col-sm-7" style="background-color: rgb(198, 252, 204) ;">
+        <h1>Notes for <%= className %></h1>
+
+        <!-- Form to Add a New Note -->
+        <!-- <form action="/class/<%= classId %>/add-note" method="post" enctype="multipart/form-data">
+            <div col-sm-7>
+                <label for="title">Subject Name:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div col-sm>
+                <label for="subjectCode">Subject Code:</label>
+                <input type="text" id="subjectCode" name="subjectCode" required>
+            </div>
+            <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <div>
+                <label for="document">Attach Document or Video (Optional):</label>
+                <input type="file" id="document" name="document" accept=".pdf,.doc,.docx,.jpeg,.jpg,.png,.mp4,.avi,.mov">
+            </div>
+          
+            <button type="submit">Add Note</button>
+        </form>
+    </div>
+
+        <h2>Existing Notes</h2>
+        <ul>
+            <% notes.forEach(note => { %>
+                <li>
+                    <h3><%= note.title %> (<%= note.subjectCode %>)</h3>
+                    <p><%= note.message %></p>
+                    <% if (note.document && note.document.data) { %>
+                        <div class="document">
+                            <a href="/preview/<%= note._id %>" class="text-decoration-none"><%= note.document.contentType %> File</a>
+                        </div>
+                    <% } %>
+                </li>
+            <% }); %>
+        </ul>
+        
+        <a href="/class/<%= classId %>">Back to Class Details</a>
+    </div>
+</body>
+</html> --> 
+
+<!-- class-content -->
+
+<body class="bg-light compressed-form">
+    <div class="container my-5 p-4 custom-bg border rounded shadow">
+        <h3 class="text-center" style="color: #007a5e;">Notes for <%= className %></h3>
+ 
+        <!-- Form to Add a New Note -->
+        <form action="/class/<%= classId %>/add-note" method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <label for="title" class="form-label">Subject Name:</label>
+                    <input type="text" id="title" name="title" class="form-control" required>
+                </div>
+                <div class="col-sm-4">
+                    <label for="subjectCode" class="form-label">Subject Code:</label>
+                    <input type="text" id="subjectCode" name="subjectCode" class="form-control" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea id="message" name="message" rows="4" class="form-control" placeholder="optional"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="document" class="form-label">Attach Document or Video :</label>
+                <input type="file" id="document" name="document" class="form-control" accept=".pdf,.doc,.docx,.jpeg,.jpg,.png,.mp4,.avi,.mov">
+            </div>
+            <div class="btn-container">
+                <button type="submit" class="submit-btn  btn-secondary mt-3 ml-2">Add Note</button>
+                <a href="/class/<%= classId %>" class="btn btn-secondary mt-3 ml-2 back">Back to Class</a>
+            </div>
+          
+        </form>
+
+        <h2 class="mt-4">Existing Notes</h2>
+        <ul class="list-unstyled">
+            
+            <% notes.forEach(note => { %>
+                <li class="mb-3 p-3 border rounded bg-light">
+                    <h3><%= note.title %> (<%= note.subjectCode %>)</h3>
+                    <p><%= note.message %></p>
+                    <% if (note.document && note.document.data) { %>
+                        <div class="document">
+                            <a href="/preview/<%= note._id %>" class="text-decoration-none"><%= note.document.contentType %> File</a>
+                        </div>
+                    <% } %>
+                </li>
+            <% }); %>
+        </ul>
+        
+        
+        
+    </div>
+
+</body>

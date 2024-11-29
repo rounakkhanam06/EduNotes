@@ -1,0 +1,35 @@
+<body  class="bg-light compressed-form">
+  <div class="container">
+      <div class="card mt-5 container my-5 p-4 custom-bg border rounded shadow">
+          <div class="card-body">
+              <h3 class="card-title">Edit Note</h3>
+              <!-- Form to edit the note -->
+              <form id="editNoteForm" action="/class/<%= note._id %>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+             
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" name="title" value="<%= note.title %>" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" required><%= note.message %></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="newDocument" class="form-label">Upload New Document</label>
+                  <input type="file" class="form-control" id="newDocument" name="newDocument">
+                </div>
+                
+                <div class="btn-container">
+                  <button type="submit" class="submit-btn  btn-secondary mt-3 ml-2">Update Note</button>
+                  <a href="/class/<%= note.class %>/showNote/<%= note._id %>" class="btn btn-secondary mt-3">Cancel</a>
+                </div>
+    
+              </form>
+              </div>
+      </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+

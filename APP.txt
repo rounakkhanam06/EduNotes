@@ -1,0 +1,16 @@
+Overview
+Home Page (/):
+
+Lists all classes and their associated notes.
+Add New Class:
+
+Displays a form to add a new class and handles the form submission to create a new class.
+View Class (/class/:id):
+
+Shows details for a specific class, including its associated notes.
+Add New Note (/class/:id/add-note):
+
+Handles the form submission for adding a new note to a specific class, including handling file uploads.
+Download Note Document (/download/:noteId):
+
+Allows downloading the document associated with a specific note.

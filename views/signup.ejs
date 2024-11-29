@@ -1,0 +1,142 @@
+
+<body style="padding-top:3.9rem ;">
+  <section class="p-3 p-md-4 p-xl-5">
+    <div class="container">
+      <div class="card border-dark-subtle shadow-lg">
+        <div class="row g-0">
+          <div class="col-12 col-md-6">
+            <img
+              class="img-fluid rounded-start w-100 h-100 object-fit-cover"
+              loading="lazy"
+              src="https://i.pinimg.com/236x/de/b9/d7/deb9d7157b7dbd47df4184b63ef48755.jpg"
+              alt="BootstrapBrain Logo"
+            />
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-body p-3 p-md-4 p-xl-5">
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-5">
+                    <h2 class="h3">Sign Up</h2>
+                    <h3 class="fs-6 fw-normal text-secondary m-0">
+                      Enter your details to Sign up
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <form id="signupForm" action="/signup" method="POST">
+                <div class="row gy-3 gy-md-4 overflow-hidden">
+                  <div class="col-12">
+                    <label for="username" class="form-label"
+                      >User Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="username"
+                      id="username"
+                      placeholder="User Name"
+                      required
+                    />
+                  </div>
+                  <!-- <div class="col-12">
+                    <label for="lastName" class="form-label"
+                      >Last Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="lastName"
+                      id="lastName"
+                      placeholder="Last Name"
+                      required
+                    /> -->
+                  </div>
+                  <div class="col-12">
+                    <label for="email" class="form-label"
+                      >Email <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      id="email"
+                      pattern=".*0207.*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+                      title="Email must include '0207'"
+                      placeholder="name@example.com"
+                      required
+                    />
+                    <span class="error-message" id="email-error">Email must include '0207'.</span>
+
+                  </div>
+                  <div class="col-12">
+                    <label for="password" class="form-label"
+                      >Password <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      id="password"
+                      value=""
+                      required
+                    />
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+                  </div>
+
+                  <label for="role">Role:</label>
+                  <select id="role" name="role" class="form-select" aria-label="Default select example">
+                      <option value="teacher">teacher</option>
+                      <option value="student">student</option>
+                    </select>
+<br>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        name="iAgree"
+                        id="iAgree"
+                        required
+                      />
+
+                      <label
+                        class="form-check-label text-secondary"
+                        for="iAgree"
+                      >
+                        I agree to the
+                        <a href="#!" class="link-primary text-decoration-none"
+                          >terms and conditions</a
+                        >
+                      </label>
+                    </div>
+                  </div>
+                  <br>
+                  
+                      <button type="submit" class="btn btn-warning ">Sign Up</button>
+                      <button type="button" class="btn btn-dark" onclick="window.location.href='/'">Back to home</button>
+                    
+                </div>
+              </form>
+              <div class="row">
+                <div class="col-12">
+                  <hr class="mt-5 mb-4 border-secondary-subtle" />
+                  <p class="m-0 text-secondary text-center">
+                    Already have an account?
+                    <a href="/login" class="link-primary text-decoration-none"
+                      >Sign in</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="/public/js/script.js"></script>
+</body>
+</html>

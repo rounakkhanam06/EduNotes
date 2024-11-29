@@ -1,0 +1,100 @@
+<!-- 
+<body class="class-content">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title"><%= note.title %></h1>
+                <p class="card-text"><%= note.message %></p>
+                <p><strong>Created At:</strong> <%= note.createdAt.toDateString() %></p>
+                <p><strong>Last Updated:</strong> <%= note.updatedAt.toDateString() %></p>
+
+                <% if (note.document) { %>
+                    <button>
+                        <a href="/download/<%= note._id %>" class="text-decoration-none">Download Document</a>
+                    </button>
+                    <br><br>
+                    <button>
+                        <a href="/preview/<%= note._id %>" class="text-decoration-none">Preview Document</a>
+                    </button><br><br>
+                 <!-- <% } %> -->
+
+                <!-- Conditionally render the Edit button for teachers -->
+                <!-- <% if (user.role === 'teacher') { %>
+                    <a href="/class/<%= note._id %>/edit" class="btn btn-primary">Edit Note</a>
+                <% } %>
+                <% if (user.role === 'teacher') { %> 
+                    <form action="/class/<%= note._id %>/delete?_method=DELETE" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete Note</button>
+                </form>
+                <% } %>
+
+                <a href="/class/<%= classId %>" class="btn btn-secondary">Back to all notes</a>
+            </div>
+        </div>
+    </div> --> 
+
+    <!-- Bootstrap JS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> --> -->
+
+
+<body class="class-content">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title"><%= note.title %></h1>
+                <p class="card-text"><%= note.message %></p>
+                <p><strong>Created At:</strong> <%= note.createdAt.toDateString() %></p>
+                <p><strong>Last Updated:</strong> <%= note.updatedAt.toDateString() %></p>
+
+                <% if (note.document) { %>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="documentOptions" data-bs-toggle="dropdown" aria-expanded="false">
+                            ⋮
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="documentOptions">
+                            <li><a class="dropdown-item" href="/download/<%= note._id %>">Download Document</a></li>
+                            <li><a class="dropdown-item" href="/preview/<%= note._id %>">Preview Document</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="showDetails()">Details</a>
+                            </li>
+                          
+                            <li>
+                                <!-- <% if (user.role === 'teacher') { %> -->
+                                <a  class="dropdown-item" href="/class/<%= note._id %>/edit" class="btn btn-primary">Edit Note</a>
+                                <% } %> 
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <br>
+                <% } %>
+
+                <!-- Conditionally render the Edit button for teachers -->
+                <% if (user.role === 'teacher') { %>
+                    <a href="/class/<%= note._id %>/edit" class="btn btn-primary">Edit Note</a>
+                <% } %>
+                <% if (user.role === 'teacher') { %> 
+                    <form action="/class/<%= note._id %>/delete?_method=DELETE" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete Note</button>
+                    </form>
+                <% } %>
+
+                <a href="/class/<%= classId %>" class="btn btn-secondary">Back to all notes</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDetails() {
+            alert('Created by: <%= note.createdBy %>\nDate Created: <%= note.createdAt.toDateString() %>\nLast Updated: <%= note.updatedAt.toDateString() %>');
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

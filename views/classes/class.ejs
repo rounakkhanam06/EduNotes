@@ -1,0 +1,171 @@
+<!-- <body class="class-content">
+   
+    <header class="text-white text-center py-3 custom-header">
+        <div class="container">
+            <h1><%= classData.name %></h1>
+            <a href="/index" class="btn btn-secondary mt-3 ml-2 back">Back to Class List</a>
+
+            <% if (user && user.role === 'teacher') { %>
+                <a href="/class/<%= classData._id %>/add-note" id="openModal" class="btn btn-light mt-3">Add New Note</a>
+              
+            <% } %>
+        </div>
+    </header> -->
+
+    <!-- Display session messages -->
+<!--     
+    <% if (message === 'success') { %>
+        <div class="alert alert-<%= message.type %>">
+            <%= message.message %>
+        </div>
+    <% } %>
+     -->
+
+    <!-- Display existing notes -->
+    <!-- <main class="container mt-5"> -->
+        <!-- Custom message -->
+        <!-- <% if (classData.notes.length > 0) { %>
+            <ul>
+                <% classData.notes.forEach(note => { %>
+                    <li>
+                        <h3><a href="/class/<%= classData._id %>/showNote/<%= note._id  %>"><%= note.title %> - <%= note.subjectCode %></a></h3>
+                        <p><%= note.message %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No notes available.</p>
+        <% } %>
+    </main> -->
+
+    <!-- Link to go back to the class list or home page -->
+    <!-- <a href="/index">Back to Class List</a>  
+</body> -->
+
+
+
+<body class="class-content">
+    <header class="text-white text-center py-3 custom-header">
+        <div class="container">
+            <h1><%= classData.name %></h1>
+            <a href="/index" class="btn btn-secondary mt-3 ml-2 back"><i class="fa-solid fa-arrow-left-long"></i> Back to Class List</a>
+
+            <% if (user && user.role === 'teacher') { %>
+                <a href="/class/<%= classData._id %>/add-note" id="openModal" class="btn btn-light mt-3"><i class="fa-solid fa-plus"></i> Add New Note</a>
+            <% } %>
+        </div>
+    </header>
+
+    <!-- Display session messages -->
+    <% if (message === 'success') { %>
+        <div class="alert alert-<%= message.type %>">
+            <%= message.message %>
+        </div>
+    <% } %>
+
+    <!-- Display existing notes -->
+
+    <main class="container mt-5">
+        <% if (classData.notes.length > 0) { %>
+            <div class="row">
+                <% classData.notes.forEach(note => { %>
+                    <div class="col-md-6 col-lg-4 mb-4"> 
+                        <div class="card position-relative">
+                            <h3 class="card-header">
+
+                                <a href="/preview/<%= note._id %>" target="_blank"><%= note.title %> - <%= note.subjectCode %></a>
+                                <div class="dropdown d-inline dropdown-button float-end">
+
+                                    <button class="btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="/download/<%= note._id %>">Download Document</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="showDetails('<%= note.title %>', '<%= note.message %>', '<%= note.createdBy %>', '<%= note.createdAt.toDateString() %>', '<%= note.updatedAt.toDateString() %>')">View Details</a>
+                                        </li>
+                                        <% if (user.role === 'teacher') { %>
+                                            <li>
+                                                <a class="dropdown-item" href="/class/<%= note._id %>/edit">Edit Note</a>
+                                            </li>
+                                        <% } %>
+                                        <% if (user.role === 'teacher') { %> 
+                                            <li>
+                                                <form action="/class/<%= note._id %>/delete?_method=DELETE" method="POST">
+                                                    <button type="submit" class="dropdown-item text-danger">Delete Note</button>
+                                                </form>
+                                            </li>
+                                        <% } %>
+                                    </ul>
+                                </div>
+                            </h3>
+                            <div class="card-body">
+                                <p><%= note.message %></p>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p>No notes available.</p>
+        <% } %>
+    </main>
+    
+
+  <!-- Details Box -->
+  <div id="detailsBox" style="display: none; position: fixed; top: 70%; left: 40%; transform: translate(-50%, -50%); background: rgba(181, 224, 203, 0.9);color: rgb(23, 22, 22); padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(230, 227, 227, 0.973); z-index: 1000;">
+    <h5>Note Details</h5>  
+    <p id="detailsContent"></p>
+    <button onclick="closeDetails()" class="btn btn-primary" style="float: right;">✖</button>
+</div>
+
+
+
+    <!-- Link to go back to the class list or home page -->
+    <a href="/index">Back to Class List</a>  
+
+    <script>
+        // Show details in a custom box
+        function showDetails(title, message, createdBy, createdAt, updatedAt) {
+          
+            const detailsContent = `
+                <strong>Title:</strong> ${title}<br>
+                <strong>Message:</strong> ${message}<br>
+                <strong>Created by:</strong> ${createdBy}<br>
+                <strong>Date Created:</strong> ${createdAt}<br>
+                <strong>Last Updated:</strong> ${updatedAt}
+                
+            `;
+           
+            document.getElementById('detailsContent').innerHTML = detailsContent;
+            document.getElementById('detailsBox').style.display = 'block';
+            detailsBoxVisible = true;
+            // document.addEventListener('click', closeOnOutsideClick);
+        }
+
+        // Close the details box
+        function closeDetails() {
+            document.getElementById('detailsBox').style.display = 'none';
+        //     detailsBoxVisible = false; // Update visibility status
+        // document.removeEventListener('click', closeOnOutsideClick);
+          
+        }
+         // Close the box when clicking outside
+    // function closeOnOutsideClick(event) {
+    //     const detailsBox = document.getElementById('detailsBox');
+    //     if (detailsBoxVisible && event.target !== detailsBox && !detailsBox.contains(event.target)) {
+    //         closeDetails();
+    //     }
+    // }
+
+ 
+    </script>
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>

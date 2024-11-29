@@ -1,0 +1,350 @@
+.signup-button, 
+.login-button,
+.logout-button,.profile-button  {
+    background-color:#009970;
+    color: #fff;
+    font-size: 18px;
+    padding: 8px 20px;
+    border-radius: 33px;
+    text-decoration: none;
+    transition: 0.3s background-color;
+    margin-right: .5rem;
+}
+
+.login-button:hover,
+.signup-button:hover,.logout-button:hover,.profile-button:hover {
+    background-color: #b9d4cd;
+}
+
+body{
+    background-color: #f0f0f0;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar{
+    background-color: #fff;
+    height: 80px;
+    padding: .5rem;
+    display: flex;
+   
+}
+
+
+
+
+.navbar-brand{
+    font-weight: 500;
+    font-size: 24px;
+}
+.navbar-toggle{
+    border: none;
+    font-size: 1.25rem;
+}
+
+.navbar-toggle:focus, .btn-close:focus{
+    box-shadow: none;outline: none;
+}
+
+.nav-link{
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-link:hover,.nav-link.active{
+    color: #000;
+}
+
+/* HERO SECTION */
+
+.hero-section{
+    margin-top: 60px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: url(../images/class-bg.webp);
+    filter: brightness(0.6); 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content{
+    text-align: center;
+}
+
+.heading{
+    color: black;
+    text-transform: capitalize;
+    font-size: 95px;
+    font-family: cursive;
+    line-height: 60px;
+    margin-bottom: 80px;
+}
+
+.heading .small{
+    display: block;
+    font-weight: 93px;
+    font-size: 40px;
+}
+
+.heading .no-fill{
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 2px #090909;
+}
+.login{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #000;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+
+
+@media (min-width:991px){
+    .nav-link::before{
+        content: "";
+        position: absolute;
+        bottom: 0;left: 50%;
+        transform: translateX(-50%);
+        width: 100%;height: 2px;
+        background-color: #009970;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before,.nav-link.active::before{
+        width: 100%;
+        visibility: visible;
+    }
+}
+/* Home Page Styling */
+body{
+  margin: 0.5rem 0.5rem;
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* Smooth scrolling */
+  background-color: var(--background-color); /* Apply background color */
+  color: var(--text-color); /* Apply text color */
+}
+
+.position-relative {
+  position: relative;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.text-overlay {
+  text-align: center;
+  text-transform: capitalize;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Ensure it's above the image */
+  padding: 1rem;
+  color: #fff;
+}
+
+.text-overlay h2 {
+  font-size: 4vw;
+}
+
+.text-overlay .btn {
+  margin: 0.5rem; /* Add margin around buttons */
+}
+
+.navbar-brand img {
+  width: 40px;
+  height: 35px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text-overlay h2 {
+      font-size: 6vw;
+  }
+  .navbar-brand img {
+      width: 35px;
+      height: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .text-overlay h2 {
+      font-size: 8vw;
+  }
+  .text-overlay {
+      padding: 0.5rem;
+  }
+}
+
+@media (max-width: 630px) {
+  body {
+      margin: 0.3rem;
+  }
+  .text-overlay h2 {
+      font-size: 7vw;
+  }
+  .navbar-brand img {
+      width: 30px;
+      height: 25px;
+  }
+  .text-overlay .btn-lg {
+      width: 100%;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+  }
+  .card {
+      margin-bottom: 1rem;
+  }
+  .row.g-0 {
+      flex-direction: column;
+  }
+  .col-md-4,
+  .col-md-8 {
+      width: 100%;
+  }
+  .card-body {
+      text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .text-overlay h2 {
+      font-size: 9vw;
+  }
+  .navbar-brand img {
+      width: 25px;
+      height: 20px;
+  }
+  .text-overlay .btn-lg {
+      font-size: 0.8rem;
+  }
+}
+
+/* index.ejs */
+
+.custom-header {
+    background-color: #009970 !important; 
+   
+}
+
+
+
+
+/* Dark Mode Styling */
+/* 
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+[data-theme="dark"] {
+  --background-color: #000000;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+} */
+
+/* Error Message Styling */
+
+.error-message {
+  color: red;
+  display: none;
+}
+/* class routes */
+.class-content{
+    padding-top: 5rem;
+}
+/* for footer  */
+.footer {
+    background-color: rgba(32, 189, 100, 0.731); /* Transparent color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.footer a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+.footer .social-icons i {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+
+
+/* add-class */
+body.class-content1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa; 
+}
+.class-content1{
+    padding-top: 5rem;
+}
+
+
+.form-container {
+    background-color: rgb(198, 252, 204);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; 
+    text-align: center;
+    height:auto;
+    margin-top: -9rem;
+}
+.submit-btn {
+    background-color: #009970; /* Custom green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.submit-btn:hover {
+    background-color: #007a5e; 
+}
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    margin-top: 20px;
+}
+.dropdown-menu {
+    background-color: white; /* White background */
+    color: black; /* Black text color */
+}
+/* add notes  */
+.compressed-form {
+    max-width: 600px;
+    margin: 0 auto; 
+}
+.custom-bg{
+    background-color: rgb(198, 252, 204) !important;
+}
