@@ -6,7 +6,7 @@ const classSchema = new mongoose.Schema({
         type: String,
         required: true // Class name is required
     },
-    teacher: {
+    Teacher: {
         type: mongoose.Schema.Types.ObjectId, // Assuming teacher is an ObjectId
         ref: 'User', // Referencing the User model
         required: false // Ensure teacher is required

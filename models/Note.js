@@ -1,4 +1,4 @@
-//Note
+
 
 //Note
 const mongoose = require('mongoose');
@@ -26,8 +26,17 @@ const noteSchema = new mongoose.Schema({
                 'image/png',
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                 'video/mp4',
-                'video/x-msvideo',
-                'video/quicktime'
+                'video/mkv',
+                'video/avi',
+                'video/webm'
+
+                // 'application/pdf',
+                // 'image/jpeg',
+                // 'image/png',
+                // 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                // 'video/mp4',
+                // 'video/x-msvideo',
+                // 'video/quicktime'
                 // Add more allowed content types as needed
             ],
             default: 'application/pdf'
@@ -39,6 +48,7 @@ const noteSchema = new mongoose.Schema({
         ref: 'Class',
         required: true // Ensure that every note is associated with a class
     },
+    downloadCount: {type: Number, default: 0},
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 });

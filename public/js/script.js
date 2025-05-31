@@ -38,3 +38,27 @@ if (!isValid) {
     event.preventDefault();
 }
 });
+
+
+// JS FOR PASSWORD HIDE OR SHOW
+
+function togglePasswordVisibility() {
+  const passwordField = document.getElementById('password');
+  const passwordIcon = document.querySelector('.toggle-password');
+  if (passwordField.type === 'password') {
+    passwordField.type = 'text';
+    passwordIcon.textContent = '🙈';
+  } else {
+    passwordField.type = 'password';
+    passwordIcon.textContent = '👁️';
+  }
+}
+
+let menuicn = document.querySelector(".menuicn");
+let nav = document.querySelector(".navcontainer");
+
+menuicn.addEventListener("click", () => {
+  nav.classList.toggle("navclose");
+})
+
+

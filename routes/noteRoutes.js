@@ -85,19 +85,32 @@ router.get('/class/:classId/showNote/:noteId', async (req, res) => {
         const { classId, noteId } = req.params;
         const user = req.user;
 
-        // Find and populate the note by ID
+        // Find the note by ID
         const note = await Note.findById(noteId).populate('class');
         if (!note) {
             return res.status(404).send('Note not found'); // Handle case where note is not found
         }
 
+        // Log the current views count before incrementing
+        console.log('Current views:', note.views);
+
+        // Increment the views field
+        note.views = (note.views || 0) + 1;
+
+        // Log the new views count after incrementing
+        console.log('Updated views:', note.views);
+
+        // Save the updated note
+        await note.save();
+
         // Render the view for showing the note
         res.render('classes/showNote', { note, classId, user });
     } catch (err) {
-        console.error(err);
+        console.error('Error updating views:', err);
         res.status(500).send('Server error'); // Handle errors
     }
 });
+
 
 // Route to display the edit form for a specific note
 router.get('/class/:noteId/edit', async (req, res) => {

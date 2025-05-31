@@ -8,82 +8,69 @@ const path = require("path");
 const { authenticateUser } = require("../middlewares/auth.js");
 
 
-// Configure multer for file uploads
-const storage = multer.memoryStorage();
-const upload = multer({ storage, limits: { fileSize: 100 * 1024 * 1024 }, fileFilter });
-
-// File filter to accept specific file types
-function fileFilter(req, file, cb) {
-    const allowedTypes = [
-        'application/pdf',
-        'image/jpeg',
-        'image/png',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'video/mp4', // Allow MP4 video files
-        'video/x-msvideo', // Allow AVI video files
-        'video/quicktime', // Allow MOV video files
-        // Add more video types as needed
-    ];
-    
-    if (!allowedTypes.includes(file.mimetype)) {
-        return cb(new Error('Invalid file type')); // Reject file if type is not allowed
-    }
-    cb(null, true); // Accept the file
-}
-
-
-
-
-// Configure multer for file uploads
-// const storage = multer.memoryStorage();
-// const upload = multer({
-//   storage,
-//   limits: {  fileSize: 100 * 1024 * 1024 },
-//   fileFilter,
-// });
-
-
-// // File filter function to allow only specific file types
-// function fileFilter(req, file, cb) {
-//   const allowedTypes = [
-//     "application/pdf",
-//     "image/jpeg",
-//     "image/png",
-//     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-//      "video/mp4",
-//      "video/mkv",
-//      "video/avi",
-//      "video/webm" 
-//   ];
-//   if (!allowedTypes.includes(file.mimetype)) {
-//     return cb(new Error("Invalid file type"));
-//     // Reject file if not allowed
-//   }
-//   cb(null, true);
-//   // Accept file if allowed
-// }
 
 // Use middleware to authenticate the user for all routes in this router
 router.use(authenticateUser);
 
+
 // Route to display the index page with classes
 router.get("/index", async (req, res) => {
   try {
-    const teacherId = req.user.role === "teacher" ? req.user._id : null;
-    
-    const classes = await Class.find().populate({ path: 'teacher', model: 'User' }).exec();
-    // Render the view
-    res.render('classes/index', { 
-      user: req.user, 
-      classes, 
-    });
+    // Ensure user is logged in before accessing this route
+    if (!req.user) {
+      return res.redirect('/login'); // Redirect to login if not authenticated
+    }
+
+    let classes;
+    let users = []; // Initialize as empty array
+
+    if (req.user.role === "Teacher") {
+      // If the user is a Teacher, only show classes created by them
+      classes = await Class.find({ Teacher: req.user._id })
+        .populate({ path: 'Teacher', model: 'User' })
+        .exec();
+
+      // Render the view for Teachers
+      return res.render('classes/index', { 
+        user: req.user, 
+        classes
+      });
+      
+    } else if (req.user.role === "Admin") {
+      // If the user is an admin, show all classes and all users
+      classes = await Class.find().populate({ path: 'Teacher', model: 'User' }).exec();
+      users = await User.find().exec();
+
+      // Render the view for admins
+      return res.render('admin/dashboard', { 
+        user: req.user, 
+        classes, 
+        users
+      });
+
+    } else {
+      // If the user is a student, show all classes
+      classes = await Class.find().populate({ path: 'Teacher', model: 'User' }).exec();
+
+      // Render the view for students
+      return res.render('classes/index', { 
+        user: req.user, 
+        classes
+      });
+    }
 
     // Clear the message after displaying it
     req.session.message = null;
+    
   } catch (err) {
-    console.log(err);
+    console.error(err); // Log the error for debugging
+    req.session.message = {
+      type: 'error',
+      message: 'An error occurred while fetching classes. Please try again later.'
+    };
+    res.redirect('/login'); // Redirect to login or an error page
   }
-});
+})
 
 // Route to render the add-class form
 router.get("/add-class", (req, res) => res.render("classes/add-class"));
@@ -96,7 +83,7 @@ router.post("/add-class", async (req, res) => {
     if (!req.user) return res.status(401).send("User not authenticated");
     if (!name) return res.status(400).send("Class name is required");
 
-    await Class.create({ name, teacher: req.user._id });
+    await Class.create({ name, Teacher: req.user._id });
     req.session.message = {
       type: "success",
       message: "Class added successfully!",
@@ -156,7 +143,7 @@ router.get("/class/:id", async (req, res) => {
   try {
     // Fetch class data and populate related fields
     const classData = await Class.findById(req.params.id)
-      .populate("teacher") // populate the teacher field in the Class document with the actual document fron user.
+      .populate("Teacher") // populate the Teacher field in the Class document with the actual document fron user.
       .populate("notes"); //populates the notes field in the Class document with documents from the Note collection.
 
     if (!classData) {

@@ -1,153 +1,26 @@
 
 <body class="d-flex flex-column">
-  <!--hero-section starts-->
-  <!-- <section class="hero-section">
-    <div class="content">
-      <h1 class="heading">
-        <span class="small">welcome to our</span>
-
-        <span class="no-fill">Classroom</span>
-      </h1>
-    </div>
-  </section> -->
+  
   <section class="hero-section flex-fill">
   <header class="header"> 
-    <div class="content">
+    <div class="content-hero">
         <h1 class="heading">
             <span class="small">welcome to our</span>
           
             <span class="no-fill">ClassRoom</span>
         </h1>
         <% if (user) { %>
-         
+          <!-- If the user is logged in, show the "Notes" page link -->
           <a href="/index" class="login">Go to Class</a>
       <% } else { %>
-        
+          <!-- If the user is not logged in, show the "Login" button -->
           <a href="/login" class="login">Click to explore</a>
       <% } %>
     </div>
 </header>
 </section>
-<!-- cards section for notes -->
-<section class="services" id="services">
-<div class="container-fluid ms-5">
-  <div class="row row-cols-1 row-cols-md-3">
-    <div class="col">
-      <div class="card border border-dark shadow-lg" style="width: 18rem">
-        <img
-        src="https://media.licdn.com/dms/image/D4D12AQFcPad8Ldl1kQ/article-cover_image-shrink_720_1280/0/1701414904328?e=2147483647&v=beta&t=JwvBZ1UK_2c8aDaUp0hZQUQmZbRs1wB_BInHYDGStQU"
-          class="card-img-top"
-          alt="..."
-        />
 
-        <div class="card-body">
-            <h5 class="card-title">Notes</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <% if (user) { %>
-                <a href="/notes" class="btn btn-warning">Explore Notes</a>
-            <% } else { %>
-                <a href="#" class="btn btn-warning">Login to Explore Notes</a>
-            <% } %>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col">
-      <div class="card border border-dark shadow-lg" style="width: 18rem">
-        <img
-          src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Academics</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up
-            the bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-warning">Academics info</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-        <div class="card border border-dark shadow-lg" style="width: 18rem">
-          <img
-            src="https://plus.unsplash.com/premium_photo-1682125773446-259ce64f9dd7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title">services</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up
-              the bulk of the card's content.
-            </p>
-            <a href="#" class="btn btn-warning">Go to services</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-   <!-- ABOUT US PAGE SECT -->
-<!-- 
-  <div class="card border border-dark shadow-lg mt-5">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScm0Cj5kHmWeU6JlvwgQ8dT_TdBzYglSic4w&s"
-        class="img-fluid rounded-start"
-        alt="about us"
-      />
-    </div>
-    <div id="about" class="col-md-8">
-      <div class="card-body">
-        <h3 class="card-title">About Us</h3>
-        <p class="card-text">
-          Takshshila Institute of Engineering & Technology, is a self
-          financing institution approved by AICTE, New Delhi, and is
-          affiliated to Rajiv Gandhi Proudyogiki Vishwavidhyalaya, Bhopal
-          (M.P) and R.D.V.V, Jabalpur. The Institute was established in year
-          2004 and is managed by “RNK Educational Society”.
-        </p>
-      </div>
-    </div>
 
-</div>
-</div>
-
-<br /> -->
-
-<!-- CONTACT PAGE SECTION -->
-<!-- 
-<div id="contact" class="card border border-dark shadow-lg my-4">
-<div class="row g-0">
-<div class="col-md-8">
-  <div class="card-body">
-    <h3 class="card-title">Contact Us</h3>
-    <p class="card-text">
-      Takshshila Group of Institutions Sharda Mandir Road, Sharda Chowk,
-      Madan Mahal, Jabalpur (M.P.) [INDIA] – 482001 Telephone:
-      0761-2441352 (Help Line) E-Mail: takshshila.engg@gmail.com Fax :
-      0761-2441353
-    </p>
-  </div>
-</div>
-<div class="col-md-4">
-
-    <img
-    src="https://takshshila.org/wp-content/uploads/2021/05/aboutus.jpg"
-    class="img-fluid rounded-end"
-    alt="contact us"
-  />
-</div>
-</div>
-</div> -->
-
-<!-- <script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-crossorigin="anonymous"></script> -->
 
 </body>
 

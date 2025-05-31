@@ -1,6 +1,18 @@
+@import url(
+"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+ /*login-signup page navigation option*/
+
 .signup-button, 
 .login-button,
-.logout-button,.profile-button  {
+.logout-button  {
     background-color:#009970;
     color: #fff;
     font-size: 18px;
@@ -12,27 +24,17 @@
 }
 
 .login-button:hover,
-.signup-button:hover,.logout-button:hover,.profile-button:hover {
+.signup-button:hover,.logout-button:hover {
     background-color: #b9d4cd;
-}
-
-body{
-    background-color: #f0f0f0;
-    color: #333;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar{
     background-color: #fff;
     height: 80px;
+    /* margin: 20px; */
     padding: .5rem;
-    display: flex;
-   
+    /* border-radius: 16px; */
 }
-
-
-
-
 .navbar-brand{
     font-weight: 500;
     font-size: 24px;
@@ -64,13 +66,12 @@ body{
     width: 100%;
     height: calc(100vh - 60px);
     background: url(../images/class-bg.webp);
-    filter: brightness(0.6); 
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.content{
+.content-hero{
     text-align: center;
 }
 
@@ -122,6 +123,7 @@ body{
         visibility: visible;
     }
 }
+
 /* Home Page Styling */
 body{
   margin: 0.5rem 0.5rem;
@@ -131,7 +133,7 @@ body{
   color: var(--text-color); /* Apply text color */
 }
 
-.position-relative {
+/* .position-relative {
   position: relative;
 }
 
@@ -149,7 +151,7 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2; /* Ensure it's above the image */
-  padding: 1rem;
+  /* padding: 1rem;
   color: #fff;
 }
 
@@ -159,15 +161,15 @@ body{
 
 .text-overlay .btn {
   margin: 0.5rem; /* Add margin around buttons */
-}
+/* }  */
 
-.navbar-brand img {
+/* .navbar-brand img {
   width: 40px;
   height: 35px;
-}
+} */
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .text-overlay h2 {
       font-size: 6vw;
   }
@@ -175,17 +177,31 @@ body{
       width: 35px;
       height: 30px;
   }
-}
+  
+} */
 
 @media (max-width: 576px) {
-  .text-overlay h2 {
+  /* .text-overlay h2 {
       font-size: 8vw;
   }
   .text-overlay {
       padding: 0.5rem;
+  } */
+  .login-button span, .signup-button span, .profile-button span, .logout-button span {
+    display: none;
   }
+  .login-button:hover span, .signup-button:hover span, .profile-button:hover span, .logout-button:hover span {
+      display: inline-block;
+      position: absolute;
+      color: #000;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 5px;
+      border-radius: 5px;
+      z-index: 1;
+    }
 }
-
+/* 
 @media (max-width: 630px) {
   body {
       margin: 0.3rem;
@@ -215,6 +231,7 @@ body{
   .card-body {
       text-align: center;
   }
+  
 }
 
 @media (max-width: 400px) {
@@ -228,7 +245,7 @@ body{
   .text-overlay .btn-lg {
       font-size: 0.8rem;
   }
-}
+} */
 
 /* index.ejs */
 
@@ -238,57 +255,13 @@ body{
 }
 
 
-
-
-/* Dark Mode Styling */
-/* 
-:root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-}
-
-[data-theme="dark"] {
-  --background-color: #000000;
-  --text-color: #ffffff;
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-} */
-
-/* Error Message Styling */
-
 .error-message {
   color: red;
   display: none;
 }
 /* class routes */
 .class-content{
-    padding-top: 5rem;
-}
-/* for footer  */
-.footer {
-    background-color: rgba(32, 189, 100, 0.731); /* Transparent color */
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-.footer a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-}
-.footer a:hover {
-    text-decoration: underline;
-}
-.footer .social-icons i {
-    font-size: 24px;
-    margin: 0 10px;
+    padding-top: 5rem;background-color: #f4eeee; /* Light greyish background */
 }
 
 
@@ -336,6 +309,8 @@ body.class-content1 {
     gap: 10px; 
     margin-top: 20px;
 }
+
+/* class.ejs */
 .dropdown-menu {
     background-color: white; /* White background */
     color: black; /* Black text color */
@@ -348,3 +323,16 @@ body.class-content1 {
 .custom-bg{
     background-color: rgb(198, 252, 204) !important;
 }
+footer {
+    width: 100%;
+    padding: 15px 0;
+    background-color: #e0e0e0;
+    text-align: center;
+    position: fixed; /* Change to 'static' if you don't want it always at the bottom */
+    bottom: 0;
+    left: 0;
+    font-size: 0.9rem;
+    color: #555;
+    border-top: 1px solid #ccc;
+  }
+  

@@ -1,56 +1,19 @@
-<!-- <body class="class-content">
-   
-    <header class="text-white text-center py-3 custom-header">
-        <div class="container">
-            <h1><%= classData.name %></h1>
-            <a href="/index" class="btn btn-secondary mt-3 ml-2 back">Back to Class List</a>
-
-            <% if (user && user.role === 'teacher') { %>
-                <a href="/class/<%= classData._id %>/add-note" id="openModal" class="btn btn-light mt-3">Add New Note</a>
-              
-            <% } %>
-        </div>
-    </header> -->
-
-    <!-- Display session messages -->
-<!--     
-    <% if (message === 'success') { %>
-        <div class="alert alert-<%= message.type %>">
-            <%= message.message %>
-        </div>
-    <% } %>
-     -->
-
-    <!-- Display existing notes -->
-    <!-- <main class="container mt-5"> -->
-        <!-- Custom message -->
-        <!-- <% if (classData.notes.length > 0) { %>
-            <ul>
-                <% classData.notes.forEach(note => { %>
-                    <li>
-                        <h3><a href="/class/<%= classData._id %>/showNote/<%= note._id  %>"><%= note.title %> - <%= note.subjectCode %></a></h3>
-                        <p><%= note.message %></p>
-                    </li>
-                <% }); %>
-            </ul>
-        <% } else { %>
-            <p>No notes available.</p>
-        <% } %>
-    </main> -->
-
-    <!-- Link to go back to the class list or home page -->
-    <!-- <a href="/index">Back to Class List</a>  
-</body> -->
-
-
 
 <body class="class-content">
     <header class="text-white text-center py-3 custom-header">
         <div class="container">
             <h1><%= classData.name %></h1>
-            <a href="/index" class="btn btn-secondary mt-3 ml-2 back"><i class="fa-solid fa-arrow-left-long"></i> Back to Class List</a>
+            <% if (user && user.role !== 'Admin') { %>
+            <a href="/index" class="btn btn-secondary mt-3 ml-2 back">
+                <i class="fa-solid fa-arrow-left-long"></i> 
+                Back to Class List</a> 
+                <% }else{%>
+                    <a href="/index" class="btn btn-secondary mt-3 ml-2 back">
+                        <i class="fa-solid fa-arrow-left-long"></i> 
+                        Back to Dashboard</a> 
+                <% } %>
 
-            <% if (user && user.role === 'teacher') { %>
+            <% if (user && user.role === 'Teacher') { %>
                 <a href="/class/<%= classData._id %>/add-note" id="openModal" class="btn btn-light mt-3"><i class="fa-solid fa-plus"></i> Add New Note</a>
             <% } %>
         </div>
@@ -83,16 +46,17 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="/download/<%= note._id %>">Download Document</a></li>
                                         <li>
-                                            <a class="dropdown-item" href="#" onclick="showDetails('<%= note.title %>', '<%= note.message %>', '<%= note.createdBy %>', '<%= note.createdAt.toDateString() %>', '<%= note.updatedAt.toDateString() %>')">View Details</a>
+                                            <a class="dropdown-item" href="#" onclick="showDetails('<%= note.title %>', '<%= note.message %>', '<%= note.createdBy %>', '<%= note.createdAt.toDateString() %>', '<%= note.updatedAt.toDateString() %>','<%= note.views %>')">View Details</a>
                                         </li>
-                                        <% if (user.role === 'teacher') { %>
+                                        <% if (user.role === 'Teacher') { %>
                                             <li>
                                                 <a class="dropdown-item" href="/class/<%= note._id %>/edit">Edit Note</a>
                                             </li>
                                         <% } %>
-                                        <% if (user.role === 'teacher') { %> 
+                                        <% if (user && user.role === 'Teacher') { %>
+
                                             <li>
-                                                <form action="/class/<%= note._id %>/delete?_method=DELETE" method="POST">
+                                                <form action="/class/<%= note._id %>/delete?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this note?');">
                                                     <button type="submit" class="dropdown-item text-danger">Delete Note</button>
                                                 </form>
                                             </li>
@@ -123,18 +87,19 @@
 
 
     <!-- Link to go back to the class list or home page -->
-    <a href="/index">Back to Class List</a>  
+    <!-- <a href="/index">Back to Class List</a>   -->
 
     <script>
         // Show details in a custom box
-        function showDetails(title, message, createdBy, createdAt, updatedAt) {
+        function showDetails(title, message, createdBy, createdAt, updatedAt, views) {
           
             const detailsContent = `
                 <strong>Title:</strong> ${title}<br>
                 <strong>Message:</strong> ${message}<br>
                 <strong>Created by:</strong> ${createdBy}<br>
                 <strong>Date Created:</strong> ${createdAt}<br>
-                <strong>Last Updated:</strong> ${updatedAt}
+                <strong>Last Updated:</strong> ${updatedAt}<br>
+                <strong>Total views:</strong> ${views}
                 
             `;
            

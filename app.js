@@ -65,6 +65,10 @@ app.set('layout', 'layouts/boilerplate');
 
 // Import route files
 const authRoutes = require('./routes/authRoutes');
+// Authentication routes
+app.use('/', authRoutes);
+const adminRoutes = require('./routes/adminRoutes'); // Adjust the path as needed
+
 const classRoutes = require('./routes/classRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 
@@ -73,9 +77,9 @@ app.get('/', (req, res) => {
     res.render('home', { user: req.user });
 });
 
-// Authentication routes
-app.use('/', authRoutes);
 
+// Use the admin routes
+app.use('/admin', adminRoutes);
 // Apply authentication middleware to class and note routes
 app.use('/', authenticateUser, classRoutes);
 app.use('/', authenticateUser, noteRoutes);

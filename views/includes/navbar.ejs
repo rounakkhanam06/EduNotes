@@ -5,76 +5,29 @@
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand me-auto" href="#"
-        ><i class="fas fa-globe me-1"></i>EduNotes</a
+       style="
+       font-size: 27px;
+         font-weight: 600;
+         color: rgb(47, 141, 70);" ><i class="fas fa-globe me-1"></i>EduNote Portal</a
       >
-      <div
-        class="offcanvas offcanvas-end"
-        tabindex="-1"
-        id="offcanvasNavbar"
-        aria-labelledby="offcanvasNavbarLabel"
-      >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-            <i class="fas fa-globe me-1"></i>EduNote Portal
-          </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/"
-                ><i class="fas fa-home me-1"></i>Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#">Services</a>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link mx-lg-2" href="#">Link</a>
-              </li> -->
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#"
-                ><i class="fas fa-envelope me-1"></i>Contact</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- <button class="toggle-button" id="theme-toggle">
-        <i class="fas fa-moon"></i> 
-    </button> -->
-
-
-      <% if (!user) { %>
-      <a href="/login" class="login-button"
-        ><i class="fas fa-user me-1"></i>LogIn</a
-      >
-      <a href="/signup" class="signup-button"
-        ><i class="fas fa-user-plus me-1"></i>Signup</a
-      ><% } %>
-      <% if (user) { %>
-        <a href="/profile" class="profile-button"
-          >Profile <i class="fas fa-user me-1"></i></a
+       <% if (!user) { %>
+        <a href="/login" class="login-button"
+          ><i class="fas fa-user me-1"></i><span>LogIn</span></a
         >
-        <a href="/logout" class="logout-button"
-          >Logout <i class="fa fa-sign-out"></i></a
+        <a href="/signup" class="signup-button"
+          ><i class="fas fa-user-plus me-1"></i><span>Signup</span></a
         ><% } %>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <% if (user && user.role !== 'Admin') { %>
+          
+       <a href="/profile" style="font-size: 2rem;color: green;margin-right: 2rem;" ><i class="fas fa-user me-1"></i></a>
+       <a href="/logout" title="logout" style="font-size: 2rem;color: red;" ><i class="fas fa-sign-out"></i></a>
+          
+          <% }else if(user && user.role === 'Admin'){%>
+            
+            <a href="/logout" title="logout" style="font-size: 2rem;color: red;" ><i class="fas fa-sign-out"></i></a>
+            
+          <% } %>
+        
     </div>
   </nav>
   <!--navbar ends-->
@@ -85,6 +38,4 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-  </body>
-  </html>
-  
+  </body>  

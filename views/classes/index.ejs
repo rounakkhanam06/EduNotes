@@ -1,16 +1,18 @@
  <body class="class-content">  
     <header class=" text-white text-center py-3 custom-header">
         <!-- <header class="custom-header"> -->
-         <div class="container"> 
-            <h1>Classroom</h1>
+         <div class="container">
+            <% if (user) { %> 
+            <h1>Hey <%= user.username %>!&#128075;
+            </h1>
 
-            <% if (user) { %>
-                <p class="mt-3">Welcome, <%= user.username %>!</p>
+            
+                <p class="mt-3">Welcome to the Classroom </p>
             <% } else { %>
                 <p class="mt-3">Please <a href="/auth/login" class="text-light">login</a>.</p>
             <% } %>
 
-            <% if (user && user.role === 'teacher') { %>
+            <% if (user && user.role === 'Teacher') { %>
                 <a href="/add-class" class="btn btn-light mt-3">Create New Class</a>
             <% } %>
         </div>
@@ -35,11 +37,11 @@
                                 <h2 class="card-title"><a href="/class/<%= cls._id %>"><%= cls.name %></a></h2>
 
                                 
-                                <% if (user && user.role === 'student') { %>
-                                    <p><strong>Created By:</strong> <%= cls.teacher ? cls.teacher.username : 'Unknown' %></p>
+                                <% if (user && user.role === 'Student') { %>
+                                    <p><strong>Created By:</strong> <%= cls.Teacher ? cls.Teacher.username : 'Unknown' %></p>
                                 <% } %>
                                 
-                                <% if (user && user.role === 'teacher') { %>
+                                <% if (user && user.role === 'Teacher') { %>
                                     <!-- Vertical three-dot toggle button -->
                                     <button class="btn btn-link position-absolute top-0 end-0 m-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
@@ -88,4 +90,7 @@
   ></script>  
 
 </body>
-</html>
+<style>
+    
+    
+</style>
